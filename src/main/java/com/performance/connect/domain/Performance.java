@@ -3,8 +3,8 @@ package com.performance.connect.domain;
 public class Performance {
     public String id;
     public String school;
-    public String grade;
-    public String cls;
+    public int grade;
+    public int cls;
     public String subject;
     public String date;
     public String updated;
@@ -28,19 +28,19 @@ public class Performance {
         this.school = school;
     }
 
-    public String getGrade() {
+    public int getGrade() {
         return grade;
     }
 
-    public void setGrade(String grade) {
+    public void setGrade(int grade) {
         this.grade = grade;
     }
 
-    public String getCls() {
+    public int getCls() {
         return cls;
     }
 
-    public void setCls(String cls) {
+    public void setCls(int cls) {
         this.cls = cls;
     }
 

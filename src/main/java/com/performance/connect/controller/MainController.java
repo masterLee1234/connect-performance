@@ -1,14 +1,22 @@
 package com.performance.connect.controller;
 
 import com.performance.connect.domain.Performance;
+import com.performance.connect.service.PerformanceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MainController {
+    private PerformanceService performanceService;
+
+    @Autowired
+    public MainController(PerformanceService performanceService) {
+        this.performanceService = performanceService;
+    }
+
     @GetMapping(value = "/")
     public String index(Model model) {
         return "index";
@@ -16,7 +24,6 @@ public class MainController {
 
     @GetMapping(value = "/post_performance")
     public String getPerformance() {
-        System.out.println("asdf");
         return "post_performance";
     }
 

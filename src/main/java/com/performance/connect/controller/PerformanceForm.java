@@ -2,8 +2,8 @@ package com.performance.connect.controller;
 
 public class PerformanceForm {
     public String school;
-    public String grade;
-    public String cls;
+    public int grade;
+    public int cls;
     public String subject;
     public String due;
     public String title;
@@ -17,19 +17,19 @@ public class PerformanceForm {
         this.school = school;
     }
 
-    public String getGrade() {
+    public int getGrade() {
         return grade;
     }
 
-    public void setGrade(String grade) {
+    public void setGrade(int grade) {
         this.grade = grade;
     }
 
-    public String getCls() {
+    public int getCls() {
         return cls;
     }
 
-    public void setCls(String cls) {
+    public void setCls(int cls) {
         this.cls = cls;
     }
 

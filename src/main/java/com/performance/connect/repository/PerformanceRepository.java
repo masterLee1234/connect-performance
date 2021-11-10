@@ -1,4 +1,12 @@
 package com.performance.connect.repository;
 
-public class PerformanceRepository {
+import com.performance.connect.domain.Performance;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface PerformanceRepository {
+    Performance save(Performance performance);
+    Optional<Performance> findById(String id);
+    List<Performance> findAll();
 }
