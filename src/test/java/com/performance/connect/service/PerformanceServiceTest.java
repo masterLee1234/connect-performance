@@ -8,10 +8,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @Transactional
@@ -78,6 +80,7 @@ public class PerformanceServiceTest {
         performance.setDue("2021-12-10");
         performance.setTitle("수행1");
         performance.setDesc("책읽기");
+        performanceService.post(performance);
 
         Performance performance1 = new Performance();
         performance1.setSchool("교하고등학교");
@@ -87,6 +90,7 @@ public class PerformanceServiceTest {
         performance1.setDue("2021-12-10");
         performance1.setTitle("수행2");
         performance1.setDesc("책읽기");
+        performanceService.post(performance1);
 
         Performance performance2 = new Performance();
         performance2.setSchool("교하고등학교");
@@ -96,12 +100,9 @@ public class PerformanceServiceTest {
         performance2.setDue("2021-12-10");
         performance2.setTitle("수행3");
         performance2.setDesc("책읽기");
-
-        performanceService.post(performance);
-        performanceService.post(performance1);
         performanceService.post(performance2);
 
-        List<Performance> performances = new ArrayList<Performance>();
+        List<Performance> performances = new ArrayList<>();
         performances.add(performance);
         performances.add(performance1);
         performances.add(performance2);
@@ -110,17 +111,21 @@ public class PerformanceServiceTest {
         List<Performance> findPerformances = performanceService.findMine("교하고등학교", 2, 4);
 
         //then
-        String performance_title_sum = "";
-        String find_performance_title_sum = "";
+        List<String> performancesTitle = new ArrayList();
+        performancesTitle.add(performances.get(0).getTitle());
+        performancesTitle.add(performances.get(1).getTitle());
+        performancesTitle.add(performances.get(2).getTitle());
 
-        int i = 0;
-        for (i = 0; i<3; i++) {
-            performance_title_sum += performances.get(i).getTitle();
-        }
+        List<String> findPerformancesTitle = new ArrayList();
+        findPerformancesTitle.add(findPerformances.get(0).getTitle());
+        findPerformancesTitle.add(findPerformances.get(1).getTitle());
+        findPerformancesTitle.add(findPerformances.get(2).getTitle());
 
-        for (i = 0; i<3; i++) {
-            find_performance_title_sum += findPerformances.get(i).getTitle();
-        }
-        assertThat(performance_title_sum).isEqualTo(find_performance_title_sum);
+        Collections.sort(performancesTitle);
+        Collections.sort(findPerformancesTitle);
+
+        System.out.println(performancesTitle.toString());
+        System.out.println(findPerformancesTitle.toString());
+        assertTrue(performancesTitle.equals(findPerformancesTitle));
     }
 }
