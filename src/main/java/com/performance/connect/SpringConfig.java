@@ -1,6 +1,5 @@
 package com.performance.connect;
 
-import com.performance.connect.domain.Performance;
 import com.performance.connect.repository.JdbcTemplatePerformanceRepository;
 import com.performance.connect.repository.PerformanceRepository;
 import com.performance.connect.service.PerformanceService;

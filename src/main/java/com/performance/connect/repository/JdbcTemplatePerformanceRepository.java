@@ -3,6 +3,7 @@ package com.performance.connect.repository;
 import com.performance.connect.domain.Performance;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import javax.sql.DataSource;
@@ -19,7 +20,7 @@ public class JdbcTemplatePerformanceRepository implements PerformanceRepository 
     @Override
     public Performance save(Performance performance) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
-        jdbcInsert.withTableName("Performance");
+        jdbcInsert.withTableName("performance");
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("id", performance.getId());
@@ -33,6 +34,7 @@ public class JdbcTemplatePerformanceRepository implements PerformanceRepository 
         parameters.put("title", performance.getTitle());
         parameters.put("desc", performance.getDesc());
 
+        jdbcInsert.execute(new MapSqlParameterSource(parameters));
         return performance;
     }
 

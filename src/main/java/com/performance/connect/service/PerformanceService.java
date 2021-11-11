@@ -8,7 +8,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
-@Service
 public class PerformanceService {
     private final PerformanceRepository performanceRepository;
 
