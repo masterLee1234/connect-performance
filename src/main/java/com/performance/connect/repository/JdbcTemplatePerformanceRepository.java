@@ -3,10 +3,12 @@ package com.performance.connect.repository;
 import com.performance.connect.domain.Performance;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import javax.sql.DataSource;
-import java.util.List;
-import java.util.Optional;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class JdbcTemplatePerformanceRepository implements PerformanceRepository {
 
@@ -18,7 +20,22 @@ public class JdbcTemplatePerformanceRepository implements PerformanceRepository 
 
     @Override
     public Performance save(Performance performance) {
-        return null;
+        SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+        jdbcInsert.withTableName("Performance").usingGeneratedKeyColumns("id");
+
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("id", performance.getId());
+        parameters.put("school", performance.getSchool());
+        parameters.put("grade", performance.getGrade());
+        parameters.put("cls", performance.getCls());
+        parameters.put("subject", performance.getSubject());
+        parameters.put("created", performance.getDate());
+        parameters.put("updated", performance.getUpdated());
+        parameters.put("due", performance.getDue());
+        parameters.put("title", performance.getTitle());
+        parameters.put("desc", performance.getDesc());
+
+        return performance;
     }
 
     @Override
