@@ -42,8 +42,9 @@ public class JdbcTemplatePerformanceRepository implements PerformanceRepository 
     }
 
     @Override
-    public Optional<Performance> findByTitle(String Title) {
-        return Optional.empty();
+    public Optional<Performance> findByTitle(String title) {
+        List<Performance> result = jdbcTemplate.query("select * from performance where title = ? ", performanceRowMapper(), title);
+        return result.stream().findAny();
     }
 
     @Override
