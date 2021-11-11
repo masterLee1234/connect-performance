@@ -3,11 +3,9 @@ package com.performance.connect.repository;
 import com.performance.connect.domain.Performance;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import javax.sql.DataSource;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class JdbcTemplatePerformanceRepository implements PerformanceRepository {
@@ -21,7 +19,7 @@ public class JdbcTemplatePerformanceRepository implements PerformanceRepository 
     @Override
     public Performance save(Performance performance) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
-        jdbcInsert.withTableName("Performance").usingGeneratedKeyColumns("id");
+        jdbcInsert.withTableName("Performance");
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("id", performance.getId());
@@ -40,6 +38,11 @@ public class JdbcTemplatePerformanceRepository implements PerformanceRepository 
 
     @Override
     public Optional<Performance> findById(String id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Performance> findByTitle(String Title) {
         return Optional.empty();
     }
 

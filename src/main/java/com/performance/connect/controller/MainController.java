@@ -38,7 +38,7 @@ public class MainController {
         performance.setTitle(form.getTitle());
         performance.setDesc(form.getDesc());
 
-        performance.to_string();
+        performanceService.post(performance);
         return "redirect:/";
     }
 }

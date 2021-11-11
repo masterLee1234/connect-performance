@@ -93,6 +93,6 @@ public class Performance {
     }
 
     public void to_string() {
-        System.out.println(this.school+" " +this.grade+" "+this.cls+" "+this.subject+" "+this.due+" "+this.title+" "+this.desc);
+        System.out.println(this.school + " " + this.grade + " " + this.cls + " " + this.subject + " " + this.due + " " + this.title + " " + this.desc);
     }
 }
