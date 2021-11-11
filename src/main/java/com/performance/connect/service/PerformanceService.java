@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class PerformanceService {
@@ -24,6 +26,14 @@ public class PerformanceService {
         performance.setUpdated(formatter.format(today));
         performanceRepository.save(performance);
         return performance.getId();
+    }
+
+    public Optional<Performance> findOne(String performanceId) {
+        return performanceRepository.findById(performanceId);
+    }
+
+    public List<Performance> findMine(String school, int grade, int cls){
+        return performanceRepository.findByUserData(school, grade, cls);
     }
 
     private void validateDuplicatePerformance(Performance performance) {

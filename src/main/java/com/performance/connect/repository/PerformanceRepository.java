@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface PerformanceRepository {
     Performance save(Performance performance);
     Optional<Performance> findById(String id);
+    List<Performance> findByUserData(String school, int grade, int cls);
     Optional<Performance> findByTitle(String title);
     List<Performance> findAll();
 

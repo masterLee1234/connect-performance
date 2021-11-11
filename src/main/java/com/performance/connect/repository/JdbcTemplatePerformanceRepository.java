@@ -32,7 +32,7 @@ public class JdbcTemplatePerformanceRepository implements PerformanceRepository 
         parameters.put("updated", performance.getUpdated());
         parameters.put("due", performance.getDue());
         parameters.put("title", performance.getTitle());
-        parameters.put("desc", performance.getDesc());
+        parameters.put("description", performance.getDesc());
 
         jdbcInsert.execute(new MapSqlParameterSource(parameters));
         return performance;
@@ -40,7 +40,13 @@ public class JdbcTemplatePerformanceRepository implements PerformanceRepository 
 
     @Override
     public Optional<Performance> findById(String id) {
-        return Optional.empty();
+        List<Performance> result = jdbcTemplate.query("select * from performance where id = ? ", performanceRowMapper(), id);
+        return result.stream().findAny();
+    }
+
+    @Override
+    public List<Performance> findByUserData(String school, int grade, int cls) {
+        return jdbcTemplate.query("SELECT * FROM performance where school=? and grade=? and cls=?", performanceRowMapper(), school, grade, cls);
     }
 
     @Override
@@ -66,7 +72,7 @@ public class JdbcTemplatePerformanceRepository implements PerformanceRepository 
             performance.setUpdated(rs.getString("updated"));
             performance.setDue(rs.getString("due"));
             performance.setTitle(rs.getString("title"));
-            performance.setDesc(rs.getString("desc"));
+            performance.setDesc(rs.getString("description"));
             return performance;
         };
     }
