@@ -12,8 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
@@ -126,6 +125,26 @@ public class PerformanceServiceTest {
 
         System.out.println(performancesTitle.toString());
         System.out.println(findPerformancesTitle.toString());
-        assertTrue(performancesTitle.equals(findPerformancesTitle));
+        assertEquals(performancesTitle, findPerformancesTitle);
+    }
+
+    @Test
+    void 삭제() {
+        //given
+        Performance performance = new Performance();
+        performance.setSchool("교하고등학교");
+        performance.setGrade(2);
+        performance.setCls(4);
+        performance.setSubject("국어");
+        performance.setDue("2021-12-10");
+        performance.setTitle("수행1");
+        performance.setDesc("책읽기");
+
+        //when
+        String saveId = performanceService.post(performance);
+
+        //then
+        String delPerformanceTitle = performanceService.deleteOne(saveId);
+        assertThat("'수행1'이 삭제 되었습니다.").isEqualTo(delPerformanceTitle);
     }
 }

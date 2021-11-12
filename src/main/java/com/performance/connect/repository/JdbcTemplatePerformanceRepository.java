@@ -56,6 +56,13 @@ public class JdbcTemplatePerformanceRepository implements PerformanceRepository 
     }
 
     @Override
+    public String deleteById(String id) {
+        List<Performance> result = jdbcTemplate.query("select * from performance where id = ? ", performanceRowMapper(), id);
+        jdbcTemplate.update("delete from performance where id = ? ", id);
+        return "'"+result.get(0).getTitle()+"'"+"이 삭제 되었습니다.";
+    }
+
+    @Override
     public List<Performance> findAll() {
         return null;
     }

@@ -10,6 +10,7 @@ public interface PerformanceRepository {
     Optional<Performance> findById(String id);
     List<Performance> findByUserData(String school, int grade, int cls);
     Optional<Performance> findByTitle(String title);
+    String deleteById(String id);
     List<Performance> findAll();
 
 }

@@ -2,7 +2,6 @@ package com.performance.connect.service;
 
 import com.performance.connect.domain.Performance;
 import com.performance.connect.repository.PerformanceRepository;
-import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,6 +33,10 @@ public class PerformanceService {
 
     public List<Performance> findMine(String school, int grade, int cls){
         return performanceRepository.findByUserData(school, grade, cls);
+    }
+
+    public String deleteOne(String id) {
+        return performanceRepository.deleteById(id);
     }
 
     private void validateDuplicatePerformance(Performance performance) {
