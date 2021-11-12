@@ -62,11 +62,6 @@ public class JdbcTemplatePerformanceRepository implements PerformanceRepository 
         return "'"+result.get(0).getTitle()+"'"+"이 삭제 되었습니다.";
     }
 
-    @Override
-    public List<Performance> findAll() {
-        return null;
-    }
-
     private RowMapper<Performance> performanceRowMapper() {
         return (rs, rowNum) -> {
             Performance performance = new Performance();
