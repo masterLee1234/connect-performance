@@ -1,13 +1,13 @@
 package com.performance.connect.controller;
 
 public class PerformanceForm {
-    public String school;
-    public int grade;
-    public int cls;
-    public String subject;
-    public String due;
-    public String title;
-    public String desc;
+    private String school;
+    private int grade;
+    private int cls;
+    private String subject;
+    private String due;
+    private String title;
+    private String desc;
 
     public String getSchool() {
         return school;

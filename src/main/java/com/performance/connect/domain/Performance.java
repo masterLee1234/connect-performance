@@ -1,16 +1,16 @@
 package com.performance.connect.domain;
 
 public class Performance {
-    public String id;
-    public String school;
-    public int grade;
-    public int cls;
-    public String subject;
-    public String date;
-    public String updated;
-    public String due;
-    public String title;
-    public String desc;
+    private String id;
+    private String school;
+    private int grade;
+    private int cls;
+    private String subject;
+    private String date;
+    private String updated;
+    private String due;
+    private String title;
+    private String desc;
 
     public String getId() {
         return id;
