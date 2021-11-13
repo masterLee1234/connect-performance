@@ -39,13 +39,11 @@ public class PerformanceService {
         return performanceRepository.deleteById(id);
     }
 
-<<<<<<< HEAD
-=======
+
     public Optional<Performance> update(String id, String due, String title, String desc) {
         return performanceRepository.updateById(id, due, title, desc);
     }
 
->>>>>>> db4daa4e1238a6c06e804057276cfa64d69af790
     private void validateDuplicatePerformance(Performance performance) {
         performanceRepository.findByTitle(performance.getTitle())
                 .ifPresent(m -> {
