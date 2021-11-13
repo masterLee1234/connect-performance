@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Post-performance</title>
+</head>
+<body>
+<form action="post_performance" method="post">
+    <label for="school">학교이름</label>
+    <input type="text" name="school" id="school">
+    <br>
+    <label for="grade">학년</label>
+    <input type="text" name="grade" id="grade">
+    <br>
+    <label for="cls">반</label>
+    <input type="text" name="cls" id="cls">
+    <br>
+    <label for="subject">과목</label>
+    <input type="text" name="subject" id="subject">
+    <br>
+    <label for="due">기한</label>
+    <input type="date" name="due" id="due">
+    <br>
+    <label for="title">제목</label>
+    <input type="text" name="title" id="title">
+    <br>
+    <textarea name="desc" id="desc" cols="30" rows="10">설명</textarea>
+    <br>
+
+    <input type="submit" value="제출">
+</form>
+</body>
+</html>

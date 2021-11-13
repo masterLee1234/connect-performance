@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>수행평가 일정관리 시스템</title>
+</head>
+ <body>
+     <div class = "all">
+     <div class = "logo">수행평가 일정관리 시스템</div>
+     <div class = "sep">
+        <div class = "left">
+          <form class="info">
+            <div class = "stu">
+             <div class ="one">학교 정보</div>
+             <input type="radio" id="중학생" name="student" value="중학생">
+             <label for="중학생">중학생</label><br>
+             <input type="radio" id="고등학생" name="student" value="고등학생">
+             <label for="고등학생">고등학생</label><br>
+             <input type="submit" value="Submit">
+            </div>
+            <div class="sch">
+              
+            </div>
+            <div class ="gra">
+
+            </div>
+            <div class="gro">
+
+            </div>
+            <div class="sub">
+
+
+            </div>
+          </form>
+        </div>
+         <div class="calendar">
+           <div class="header">
+             <div class="year-month"></div>
+             <div class="nav">
+               <button class="nav-btn go-prev" onclick="prevMonth()">&lt;</button>
+               <button class="nav-btn go-today" onclick="goToday()">Today</button>
+               <button class="nav-btn go-next" onclick="nextMonth()">&gt;</button>
+             </div>
+           </div>
+           <div class="main">
+             <div class="days">
+               <div class="day">일</div>
+               <div class="day">월</div>
+               <div class="day">화</div>
+               <div class="day">수</div>
+               <div class="day">목</div>
+               <div class="day">금</div>
+               <div class="day">토</div>
+             </div>
+             <div class="dates"></div>
+           </div>
+         </div>
+         <script src="index.js"></script>
+        </div>
+    </div>
+       </body>
+       </html>
