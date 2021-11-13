@@ -39,6 +39,10 @@ public class PerformanceService {
         return performanceRepository.deleteById(id);
     }
 
+    public Optional<Performance> update(String id, String due, String title, String desc) {
+        return performanceRepository.updateById(id, due, title, desc);
+    }
+
     private void validateDuplicatePerformance(Performance performance) {
         performanceRepository.findByTitle(performance.getTitle())
                 .ifPresent(m -> {
