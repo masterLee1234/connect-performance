@@ -41,4 +41,4 @@ public class MainController {
         performanceService.post(performance);
         return "redirect:/";
     }
-}
+ }
