@@ -147,4 +147,27 @@ public class PerformanceServiceTest {
         String delPerformanceTitle = performanceService.deleteOne(saveId);
         assertThat("'수행1'이 삭제 되었습니다.").isEqualTo(delPerformanceTitle);
     }
+
+
+    @Test
+    void 수정() {
+        //given
+        Performance performance = new Performance();
+        performance.setSchool("교하고등학교");
+        performance.setGrade(2);
+        performance.setCls(4);
+        performance.setSubject("국어");
+        performance.setDue("2021-12-10");
+        performance.setTitle("수행1");
+        performance.setDesc("책읽기");
+
+        //when
+        String saveId = performanceService.post(performance);
+
+        //then
+        Performance updatedPerformance = performanceRepository.updateById(saveId, "2021-12-11", "수행2", "서평쓰기").get();
+        assertThat("2021-12-11 00:00:00").isEqualTo(updatedPerformance.getDue());
+        assertThat("수행2").isEqualTo(updatedPerformance.getTitle());
+        assertThat("서평쓰기").isEqualTo(updatedPerformance.getDesc());
+    }
 }

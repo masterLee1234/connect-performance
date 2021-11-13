@@ -62,6 +62,15 @@ public class JdbcTemplatePerformanceRepository implements PerformanceRepository 
         return "'"+result.get(0).getTitle()+"'"+"이 삭제 되었습니다.";
     }
 
+
+    @Override
+    public Optional<Performance> updateById(String id, String due, String title, String desc) {
+        jdbcTemplate.update("update performance set due=?, title=?, description=?", due, title, desc);
+        List<Performance> result = jdbcTemplate.query("select * from performance where id = ?", performanceRowMapper(), id);
+        return result.stream().findAny();
+    }
+
+
     private RowMapper<Performance> performanceRowMapper() {
         return (rs, rowNum) -> {
             Performance performance = new Performance();
