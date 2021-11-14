@@ -23,10 +23,18 @@
         }
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
+          customButtons: {
+            myCustomButton: {
+              text: 'create',
+              click: function() {
+                window.location.href = "post_performance";
+              }
+            }
+          },
           headerToolbar: {
             left: "prev,next today",
             center: "title",
-            right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
+            right: "myCustomButton dayGridMonth,timeGridWeek,timeGridDay,listMonth",
           },
           locale: "ko",
           navLinks: true, // can click day/week names to navigate views
@@ -37,7 +45,7 @@
             info.jsEvent.preventDefault(); // don't let the browser navigate
 
             if (info.event.url) {
-              window.open(info.event.url);
+              window.open(info.event.url, info.event.title, "width=500, height=500");
             }
           }
         });
@@ -58,7 +66,13 @@
               <legend>정보 입력</legend>
               <br />
               <label for="school">학교이름:</label>
-              <input name="school" required type="text" id="school" th:value="${school}"/><br /><br />
+              <input
+                name="school"
+                required
+                type="text"
+                id="school"
+                th:value="${school}"
+              /><br /><br />
               <label for="grade">학년:</label>
               <input
                 max="3"
@@ -78,7 +92,7 @@
                 required
                 type="number"
                 th:value="${cls}"
-              /><br/><br/>
+              /><br /><br />
               <br /><input type="submit" value="제출" />
             </fieldset>
           </form>
