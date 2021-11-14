@@ -4,10 +4,7 @@ import com.performance.connect.domain.Performance;
 import com.performance.connect.repository.PerformanceRepository;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public class PerformanceService {
     private final PerformanceRepository performanceRepository;
@@ -31,7 +28,7 @@ public class PerformanceService {
         return performanceRepository.findById(performanceId);
     }
 
-    public List<Performance> findMine(String school, int grade, int cls){
+    public List<Performance> findMine(String school, int grade, int cls) {
         return performanceRepository.findByUserData(school, grade, cls);
     }
 
@@ -49,7 +46,9 @@ public class PerformanceService {
     private void validateDuplicatePerformance(Performance performance) {
         performanceRepository.findByTitle(performance.getTitle())
                 .ifPresent(m -> {
-                    throw new IllegalStateException("이미 존재하는 수행평가입니다.");
+                    if (Objects.equals(m.getSubject(), performance.getSubject()) && Objects.equals(m.getSchool(), performance.getSchool()) && m.getGrade() == performance.getGrade() && m.getCls() == performance.getCls()) {
+                        throw new IllegalStateException("이미 존재하는 수행평가입니다.");
+                    }
                 });
     }
 }

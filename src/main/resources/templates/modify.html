@@ -40,7 +40,7 @@
         <fieldset style="border: 1;">
             <legend style="text-align: center; font-size: 20px;">수정 페이지</legend>
             <label for="due">기한</label>
-            <input type="date" name="due" id="due" required />
+            <input type="datetime-local" name="due" id="due" required />
             <br>
             <label for="title">제목</label>
             <input type="text" name="title" id="title" required th:value="${title}"/>
