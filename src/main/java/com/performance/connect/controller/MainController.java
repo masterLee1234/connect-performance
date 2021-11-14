@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class MainController {
     private PerformanceService performanceService;
@@ -18,7 +20,17 @@ public class MainController {
     }
 
     @GetMapping(value = "/")
-    public String index(Model model) {
+    public String index(Model model, UserDataForm form){
+        List<Performance> performances = performanceService.findMine(form.getSchool(),form.getGrade(),form.getCls());
+        model.addAttribute("performances",performances);
+        model.addAttribute("school", form.getSchool());
+        if(form.getGrade() != 0 && form.getCls() != 0) {
+            model.addAttribute("grade", form.getGrade());
+            model.addAttribute("cls",form.getCls());
+        } else {
+            model.addAttribute("grade", "");
+            model.addAttribute("cls","");
+        }
         return "index";
     }
 

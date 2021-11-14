@@ -3,34 +3,36 @@
 <html lang="kr">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='main.css' rel='stylesheet' />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href='main.css' rel='stylesheet'/>
     <script src='main.js'></script>
-    <script  src= '1.js'></script>  
+    <script src='1.js'></script>
     <title>수행평가 일정관리 시스템</title>
 </head>
- <body>
-     <div class = "all">
-     <div class = "logo">수행평가 일정관리 시스템</div>
-     <div class = "sep">
-        <div class = "left">
-          <form class="info">
-            <br>
-            <fieldset style="border :0";>
-              <legend>정보 입력</legend><br>
-              학교이름 :<br>
-              <input type = "text" name = "school" required/><br><br>
-              학년 : <br><input type = "number" min = "1" max ="3"  name="grade" required/><br><br>
-              반 : <br><input type = "number" min = "1" max ="30"  name="group" required/><br><br>
-              수강과목(중복선택 가능)<br>
-              <input type="checkbox" name="subject1" value="독서">독서<br>
-              <input type="checkbox" name="subject2" value="문학">문학<br>
-              <br><input  type="submit" value="제출">
-            </fieldset>
-          </form>
+<body>
+<div class="all">
+    <div class="logo">수행평가 일정관리 시스템</div>
+    <div class="sep">
+        <div class="left">
+            <form class="info">
+                <br>
+                <fieldset ; style="border :0">
+                    <legend>정보 입력</legend>
+                    <br>
+                    학교이름 :<br>
+                    <input name="school" required type="text"/><br><br>
+                    학년 : <br><input max="3" min="1" name="grade" required type="number"/><br><br>
+                    반 : <br><input max="30" min="1" name="group" required type="number"/><br><br>
+                    수강과목(중복선택 가능)<br>
+                    <input name="subject1" type="checkbox" value="독서">독서<br>
+                    <input name="subject2" type="checkbox" value="문학">문학<br>
+                    <br><input type="submit" value="제출">
+                </fieldset>
+            </form>
         </div>
         <div id='calendar'></div>
     </div>
-       </body>
-       </html>
+</div>
+</body>
+</html>
