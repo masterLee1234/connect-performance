@@ -1,7 +1,7 @@
 package com.performance.connect.controller;
 
 public class ModifyForm {
-  private String updated
+  private String updated;
   private String due;
   private String title;
   private String desc;
