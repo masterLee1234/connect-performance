@@ -33,6 +33,22 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping(value = "/{id}")
+    public String Specific(Model model, @PathVariable("id") String id){
+        Performance performance = performanceService.findOne(id).orElseGet(Performance::new);
+        model.addAttribute("id", performance.getId());
+        model.addAttribute("school", performance.getSchool());
+        model.addAttribute("grade", performance.getGrade());
+        model.addAttribute("cls", performance.getCls());
+        model.addAttribute("subject", performance.getSubject());
+        model.addAttribute("created", performance.getDate());
+        model.addAttribute("updated", performance.getUpdated());
+        model.addAttribute("due", performance.getDue());
+        model.addAttribute("title", performance.getTitle());
+        model.addAttribute("desc", performance.getDesc());
+        return "specific";
+    }
+
     @GetMapping(value = "/post_performance")
     public String getPerformance() {
         return "post_performance";
@@ -50,28 +66,27 @@ public class MainController {
         performance.setDesc(form.getDesc());
 
         performanceService.post(performance);
-        return "redirect:/";
+        return "/loading";
     }
     @GetMapping(value = "/update/{id}")
-    @ResponseBody
     public String updateGet(Model model, @PathVariable(value = "id") String id){
         Performance performance = performanceService.findOne(id).orElseGet(Performance::new);
+        model.addAttribute("id", id);
         model.addAttribute("due", performance.getDue());
         model.addAttribute("title", performance.getTitle());
         model.addAttribute("desc", performance.getDesc());
-        return "updateById";
+        return "modify";
     }
 
     @PostMapping(value = "/update")
     public String updatePost(ModifyForm modifyForm) {
         performanceService.update(modifyForm.getId(), modifyForm.getDue(), modifyForm.getTitle(), modifyForm.getDesc());
-        return "redirect:/update/"+modifyForm.getId();
+        return "/loading";
     }
 
-    @PostMapping(value = "/delete/{id}")
-    @ResponseBody
+    @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable("id") String id){
         performanceService.deleteOne(id);
-        return "redirect:/";
+        return "/loading";
     }
  }
