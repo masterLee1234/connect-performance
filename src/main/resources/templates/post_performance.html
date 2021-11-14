@@ -37,24 +37,24 @@
 <form action="post_performance" method="post">
     <fieldset style="border: 1;">
         <label for="school">학교이름</label>
-        <input type="text" name="school" id="school">
+        <input type="text" name="school" id="school" required>
         <br>
         <label for="grade">학년</label>
-        <input type="text" name="grade" id="grade">
+        <input type="text" name="grade" id="grade" required>
         <br>
         <label for="cls">반</label>
-        <input type="text" name="cls" id="cls">
+        <input type="text" name="cls" id="cls" required>
         <br>
         <label for="subject">과목</label>
-        <input type="text" name="subject" id="subject">
+        <input type="text" name="subject" id="subject" required>
         <br>
         <label for="due">기한</label>
-        <input type="date" name="due" id="due">
+        <input type="date" name="due" id="due" required>
         <br>
         <label for="title">제목</label>
-        <input type="text" name="title" id="title">
+        <input type="text" name="title" id="title" required>
         <br>
-        <textarea name="desc" id="desc" cols="30" rows="10">설명</textarea>
+        <textarea name="desc" id="desc" cols="30" rows="10" required>설명</textarea>
         <br>
 
         <input type="submit" value="제출">

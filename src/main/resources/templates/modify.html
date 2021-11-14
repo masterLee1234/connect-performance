@@ -45,7 +45,7 @@
             <label for="title">제목</label>
             <input type="text" name="title" id="title" required th:value="${title}"/>
             <br>
-            <textarea name="desc" id="desc" th:text="${desc}"></textarea>
+            <textarea name="desc" id="desc" th:text="${desc}" required></textarea>
             <br>
             <input type="submit" style="margin:15px 25px 0;" value="제출">
             <input type="hidden" id="id" name="id" th:value="${id}">
