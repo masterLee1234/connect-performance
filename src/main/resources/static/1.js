@@ -2,10 +2,18 @@ document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
+      customButtons: {
+        myCustomButton: {
+          text: '수정페이지',
+          click: function() {
+            alert('수정페이지넣을거임');
+          }
+        }
+      },
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+        right: 'myCustomButton dayGridMonth,timeGridWeek,timeGridDay,listMonth'
       },
       locale : "ko",
       navLinks: true, // can click day/week names to navigate views
@@ -47,6 +55,13 @@ document.addEventListener('DOMContentLoaded', function() {
           display: 'background'
         },
       ]
+        eventClick: function(info) {
+    info.jsEvent.preventDefault(); // don't let the browser navigate
+
+    if (info.event.url) {
+      window.open(info.event.url);
+    }
+  }
     });
 
     calendar.render();

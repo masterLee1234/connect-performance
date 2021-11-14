@@ -53,4 +53,25 @@ public class MainController {
         performanceService.post(performance);
         return "redirect:/";
     }
+
+    @GetMapping(value = "/")
+    public String index(Model model, UserDataForm form){
+      List<Performance> performances = performanceService.findMine(form.getSchool(),form.getGrade(),form.getCls());
+      model.addAttribute("performances",perfomances);
+      return "index";
+    }
+    @GetMapping(value = "/update")
+    public String index(Model model, ModifyForm form){
+      List<Performance> performances = perfomanceService.update(form.getUpdated(),form.getDue(),form.getTitle(),form.getDesc());
+      model.addAttribute("performances", performances);
+      return "updateById";
+    }
+    @GetMapping(value = "/deleteOne")
+    public String index(Model model, DeleteForm form){
+      List<Performance> perfomances = performanceService.deleteOne(form.getSchool(),form.getGrade(),form.getCls(),form.getSubject(),
+      form.getDue(),form.getTitle(),form.getUpdated(),form.getDesc());
+      model.addAttribute("performances",perfomances);
+      return "deleteById";
+
+    }
  }
