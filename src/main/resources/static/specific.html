@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>수행평가 일정 상세보기</title>
+    <style>
+        table,
+        td,
+        th {
+            border-top: 2px solid #ccc;
+            border-bottom: 2px solid #ccc;
+            border-collapse: collapse;
+        }
+
+        ;
+
+        .specific th {
+            width: 100px;
+        }
+
+        .specific td {
+            width: 400px;
+        }
+
+        .specific input {
+            margin: 0 10px 0 5px;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body onresize="parent.resizeTo(500,500)" onload="parent.resizeTo(500,500)">
+    <div style="font-size: 30px; text-align: center; margin:10px 0px 10px 0px;">수행평가 상세보기</div>
+    <table class="specific" width="500" align="center">
+        <tr height="45px">
+            <th>학교</th>
+            <td>'학교'</td>
+        </tr>
+        <tr height="45px">
+            <th>학년</th>
+            <td>'학년'</td>
+        </tr>
+        <tr height="45px">
+            <th>반</th>
+            <td>'반'</td>
+        </tr>
+        <tr height="45px">
+            <th>과목</th>
+            <td>'과목'</td>
+        </tr>
+        <tr height="45px">
+            <th>기한</th>
+            <td>'기한'</td>
+        </tr>
+        <tr height="45px">
+            <th>제목</th>
+            <td>'제목'</td>
+        </tr>
+        <tr height="150px">
+            <th>설명</th>
+            <td>'설명'</td>
+        </tr>
+        <tr height="30px">
+            <td colspan="2"><input type="button" value="수행평가 일정 지우기"><input type="button" value="수행평가 일정 수정하기"></td>
+        </tr>
+    </table>
+</body>
+
+</html>
