@@ -150,7 +150,7 @@ public class PerformanceServiceTest {
 
 
     @Test
-    void 수정() {
+    void 수정() throws InterruptedException {
         //given
         Performance performance = new Performance();
         performance.setSchool("교하고등학교");
@@ -163,11 +163,14 @@ public class PerformanceServiceTest {
 
         //when
         String saveId = performanceService.post(performance);
+        Performance postedPerformance = performanceService.findOne(saveId).get();
+        Thread.sleep(1000);
 
         //then
-        Performance updatedPerformance = performanceRepository.updateById(saveId, "2021-12-11", "수행2", "서평쓰기").get();
+        Performance updatedPerformance = performanceService.update(saveId, "2021-12-11", "수행2", "서평쓰기").get();
         assertThat("2021-12-11 00:00:00").isEqualTo(updatedPerformance.getDue());
         assertThat("수행2").isEqualTo(updatedPerformance.getTitle());
         assertThat("서평쓰기").isEqualTo(updatedPerformance.getDesc());
+        assertNotEquals(updatedPerformance.getUpdated(), postedPerformance.getUpdated());
     }
 }

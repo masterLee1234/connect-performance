@@ -13,6 +13,6 @@ public interface PerformanceRepository {
     Optional<Performance> findByTitle(String title);
     String deleteById(String id);
 
-    Optional<Performance> updateById(String id, String due, String title, String desc);
+    Optional<Performance> updateById(String id, String due, String title, String desc, String updated);
 
 }

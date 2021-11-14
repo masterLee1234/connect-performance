@@ -64,8 +64,8 @@ public class JdbcTemplatePerformanceRepository implements PerformanceRepository 
 
 
     @Override
-    public Optional<Performance> updateById(String id, String due, String title, String desc) {
-        jdbcTemplate.update("update performance set due=?, title=?, description=?", due, title, desc);
+    public Optional<Performance> updateById(String id, String due, String title, String desc, String updated) {
+        jdbcTemplate.update("update performance set due=?, title=?, description=?, updated=?", due, title, desc, updated);
         List<Performance> result = jdbcTemplate.query("select * from performance where id = ?", performanceRowMapper(), id);
         return result.stream().findAny();
     }

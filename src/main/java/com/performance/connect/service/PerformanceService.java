@@ -41,7 +41,9 @@ public class PerformanceService {
 
 
     public Optional<Performance> update(String id, String due, String title, String desc) {
-        return performanceRepository.updateById(id, due, title, desc);
+        Date today = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return performanceRepository.updateById(id, due, title, desc, formatter.format(today));
     }
 
     private void validateDuplicatePerformance(Performance performance) {
