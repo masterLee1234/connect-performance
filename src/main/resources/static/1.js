@@ -47,6 +47,13 @@ document.addEventListener('DOMContentLoaded', function() {
           display: 'background'
         },
       ]
+        eventClick: function(info) {
+    info.jsEvent.preventDefault(); // don't let the browser navigate
+
+    if (info.event.url) {
+      window.open(info.event.url);
+    }
+  }
     });
 
     calendar.render();
