@@ -53,13 +53,6 @@ public class MainController {
         performanceService.post(performance);
         return "redirect:/";
     }
-
-    @GetMapping(value = "/")
-    public String index(Model model, UserDataForm form){
-      List<Performance> performances = performanceService.findMine(form.getSchool(),form.getGrade(),form.getCls());
-      model.addAttribute("performances",perfomances);
-      return "index";
-    }
     @GetMapping(value = "/update")
     public String index(Model model, ModifyForm form){
       List<Performance> performances = perfomanceService.update(form.getUpdated(),form.getDue(),form.getTitle(),form.getDesc());
