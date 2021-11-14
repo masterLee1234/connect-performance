@@ -5,8 +5,7 @@ import com.performance.connect.service.PerformanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -53,18 +52,26 @@ public class MainController {
         performanceService.post(performance);
         return "redirect:/";
     }
-    @GetMapping(value = "/update")
-    public String index(Model model, ModifyForm form){
-      List<Performance> performances = perfomanceService.update(form.getUpdated(),form.getDue(),form.getTitle(),form.getDesc());
-      model.addAttribute("performances", performances);
-      return "updateById";
+    @GetMapping(value = "/update/{id}")
+    @ResponseBody
+    public String updateGet(Model model, @PathVariable(value = "id") String id){
+        Performance performance = performanceService.findOne(id).orElseGet(Performance::new);
+        model.addAttribute("due", performance.getDue());
+        model.addAttribute("title", performance.getTitle());
+        model.addAttribute("desc", performance.getDesc());
+        return "updateById";
     }
-    @GetMapping(value = "/deleteOne")
-    public String index(Model model, DeleteForm form){
-      List<Performance> perfomances = performanceService.deleteOne(form.getSchool(),form.getGrade(),form.getCls(),form.getSubject(),
-      form.getDue(),form.getTitle(),form.getUpdated(),form.getDesc());
-      model.addAttribute("performances",perfomances);
-      return "deleteById";
 
+    @PostMapping(value = "/update")
+    public String updatePost(ModifyForm modifyForm) {
+        performanceService.update(modifyForm.getId(), modifyForm.getDue(), modifyForm.getTitle(), modifyForm.getDesc());
+        return "redirect:/update/"+modifyForm.getId();
+    }
+
+    @PostMapping(value = "/delete/{id}")
+    @ResponseBody
+    public String delete(@PathVariable("id") String id){
+        performanceService.deleteOne(id);
+        return "redirect:/";
     }
  }
