@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link href="/css/main.css" rel="stylesheet" />
+    <script src="/js/main.js"></script>
+    <script th:inline="javascript">
+      document.addEventListener("DOMContentLoaded", function () {
+        var calendarEl = document.getElementById("calendar");
+        var theList = [[${performances}]];
+        var eventList = [];
+        for (i = 0; i < theList.length; i++) {
+          var dict = {
+            title: theList[i].title,
+            start: theList[i].due,
+            content: theList[i].desc,
+            url: theList[i].id
+          };
+          eventList.push(dict);
+        }
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          customButtons: {
+            myCustomButton: {
+              text: 'create',
+              click: function() {
+                window.open("post_performance", "post", "width=500, height=800");
+              }
+            }
+          },
+          headerToolbar: {
+            left: "prev,next today",
+            center: "title",
+            right: "myCustomButton dayGridMonth,timeGridWeek,timeGridDay,listMonth",
+          },
+          locale: "ko",
+          navLinks: true, // can click day/week names to navigate views
+          businessHours: true, // display business hours
+          selectable: true,
+          events: eventList,
+          eventClick: function(info) {
+            info.jsEvent.preventDefault(); // don't let the browser navigate
+
+            if (info.event.url) {
+              window.open(info.event.url, info.event.title, "width=500, height=600");
+            }
+          }
+        });
+
+        calendar.render();
+      });
+    </script>
+    <title>수행평가 일정관리 시스템</title>
+  </head>
+  <body>
+    <div class="all">
+      <div class="logo">수행평가 일정관리 시스템</div>
+      <div class="sep">
+        <div class="left">
+          <form class="info">
+            <br />
+            <fieldset style="border: 0">
+              <legend>정보 입력</legend>
+              <br />
+              <label for="school">학교이름:</label>
+              <input
+                name="school"
+                required
+                type="text"
+                id="school"
+                th:value="${school}"
+              /><br /><br />
+              <label for="grade">학년:</label>
+              <input
+                max="3"
+                min="1"
+                name="grade"
+                id="grade"
+                required
+                type="number"
+                th:value="${grade}"
+              /><br /><br />
+              <label for="cls">반: </label>
+              <input
+                max="30"
+                min="1"
+                name="cls"
+                id="cls"
+                required
+                type="number"
+                th:value="${cls}"
+              /><br /><br />
+              <br /><input type="submit" value="제출" />
+            </fieldset>
+          </form>
+        </div>
+        <div id="calendar"></div>
+      </div>
+    </div>
+  </body>
+</html>

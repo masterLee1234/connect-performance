@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>수행평가 일정 수정</title>
+    <style>
+        label,
+        input,
+        textarea {
+            margin: 15px 10px auto;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+
+        input {
+            display: block;
+            position: relative;
+            width: 90%;
+            height: 29px;
+            padding-right: 25px;
+            line-height: 29px;
+        }
+
+        textarea {
+            width: 90%;
+            height: 150px;
+            padding-right: 25px;
+            line-height: 29px;
+            resize: none;
+        }
+    </style>
+</head>
+
+<body onresize="parent.resizeTo(500,600)" onload="parent.resizeTo(500,600)">
+    <form action="/update" method="post">
+        <fieldset style="border: 1;">
+            <legend style="text-align: center; font-size: 20px;">수정 페이지</legend>
+            <label for="due">기한</label>
+            <input type="datetime-local" name="due" id="due" required />
+            <br>
+            <label for="title">제목</label>
+            <input type="text" name="title" id="title" required th:value="${title}"/>
+            <br>
+            <textarea name="desc" id="desc" th:text="${desc}" required></textarea>
+            <br>
+            <input type="submit" style="margin:15px 25px 0;" value="제출">
+            <input type="hidden" id="id" name="id" th:value="${id}">
+        </fieldset>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Post-performance</title>
+    <style>
+        label,
+        input,
+        textarea {
+            margin: 15px 10px auto;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+
+        input {
+            display: block;
+            position: relative;
+            width: 90%;
+            height: 29px;
+            padding-right: 25px;
+            line-height: 29px;
+        }
+
+        textarea {
+            width: 90%;
+            height: 150px;
+            padding-right: 25px;
+            line-height: 29px;
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+<form action="post_performance" method="post">
+    <fieldset style="border: 1;">
+        <label for="school">학교이름</label>
+        <input type="text" name="school" id="school" required>
+        <br>
+        <label for="grade">학년</label>
+        <input type="text" name="grade" id="grade" required>
+        <br>
+        <label for="cls">반</label>
+        <input type="text" name="cls" id="cls" required>
+        <br>
+        <label for="subject">과목</label>
+        <input type="text" name="subject" id="subject" required>
+        <br>
+        <label for="due">기한</label>
+        <input type="datetime-local" name="due" id="due" required>
+        <br>
+        <label for="title">제목</label>
+        <input type="text" name="title" id="title" required>
+        <br>
+        <textarea name="desc" id="desc" cols="30" rows="10" required>설명</textarea>
+        <br>
+
+        <input type="submit" value="제출">
+    </fieldset>
+</form>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>수행평가 일정 상세보기</title>
+    <style>
+        table,
+        td,
+        th {
+            border-top: 2px solid #ccc;
+            border-bottom: 2px solid #ccc;
+            border-collapse: collapse;
+        }
+
+        ;
+
+        .specific th {
+            width: 100px;
+        }
+
+        .specific td {
+            width: 400px;
+        }
+
+        .specific input {
+            margin: 0 10px 0 5px;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="font-size: 30px; text-align: center; margin:10px 0px 10px 0px;">수행평가 상세보기</div>
+    <table class="specific" width="500" align="center">
+        <tr height="45px">
+            <th>학교</th>
+            <td th:text="${school}">'학교'</td>
+        </tr>
+        <tr height="45px">
+            <th>학년</th>
+            <td th:text="${grade}">'학년'</td>
+        </tr>
+        <tr height="45px">
+            <th>반</th>
+            <td th:text="${cls}">'반'</td>
+        </tr>
+        <tr height="45px">
+            <th>과목</th>
+            <td th:text="${subject}">'과목'</td>
+        </tr>
+        <tr height="45px">
+            <th>생성됨</th>
+            <td th:text="${created}">'생성됨'</td>
+        </tr>
+        <tr height="45px">
+            <th>수정됨</th>
+            <td th:text="${updated}">'수정됨'</td>
+        </tr>
+        <tr height="45px">
+            <th>기한</th>
+            <td th:text="${due}">'기한'</td>
+        </tr>
+        <tr height="45px">
+            <th>제목</th>
+            <td th:text="${title}">'제목'</td>
+        </tr>
+        <tr height="150px">
+            <th>설명</th>
+            <td th:text="${desc}">'설명'</td>
+        </tr>
+        <tr height="30px">
+            <td colspan="2"><input type="button" value="수행평가 일정 지우기" th:attr="onclick=|window.location.href='/delete/${id}'|"><input type="button" value="수행평가 일정 수정하기" th:attr="onclick=|window.location.href='/update/${id}'|"></td>
+        </tr>
+    </table>
+</body>
+
+</html>
