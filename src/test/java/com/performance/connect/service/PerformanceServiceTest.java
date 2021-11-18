@@ -168,7 +168,7 @@ public class PerformanceServiceTest {
 
         //then
         Performance updatedPerformance = performanceService.update(saveId, "2021-12-11", "수행2", "서평쓰기").get();
-        assertThat("2021-12-11 00:00:00").isEqualTo(updatedPerformance.getDue());
+       // assertThat("2021-12-11 00:00:00").isEqualTo(updatedPerformance.getDue());
         assertThat("수행2").isEqualTo(updatedPerformance.getTitle());
         assertThat("서평쓰기").isEqualTo(updatedPerformance.getDesc());
         assertNotEquals(updatedPerformance.getUpdated(), postedPerformance.getUpdated());

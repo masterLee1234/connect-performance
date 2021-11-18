@@ -19,22 +19,25 @@ public class JdbcTemplatePerformanceRepository implements PerformanceRepository 
 
     @Override
     public Performance save(Performance performance) {
-        SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
-        jdbcInsert.withTableName("performance");
-
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("id", performance.getId());
-        parameters.put("school", performance.getSchool());
-        parameters.put("grade", performance.getGrade());
-        parameters.put("cls", performance.getCls());
-        parameters.put("subject", performance.getSubject());
-        parameters.put("created", performance.getDate());
-        parameters.put("updated", performance.getUpdated());
-        parameters.put("due", performance.getDue());
-        parameters.put("title", performance.getTitle());
-        parameters.put("description", performance.getDesc());
-
-        jdbcInsert.execute(new MapSqlParameterSource(parameters));
+//        SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+//        jdbcInsert.withTableName("performance");
+//
+//        Map<String, Object> parameters = new HashMap<>();
+//        parameters.put("id", performance.getId());
+//        parameters.put("school", performance.getSchool());
+//        parameters.put("grade", performance.getGrade());
+//        parameters.put("cls", performance.getCls());
+//        parameters.put("subject", performance.getSubject());
+//        parameters.put("created", performance.getDate());
+//        parameters.put("updated", performance.getUpdated());
+//        parameters.put("due", performance.getDue());
+//        parameters.put("title", performance.getTitle());
+//        parameters.put("description", performance.getDesc());
+//
+//        jdbcInsert.execute(new MapSqlParameterSource(parameters));
+        jdbcTemplate.update("INSERT INTO performance(id, school, grade, cls, subject, created, updated, due, title, description) values(?,?,?,?,?,?,?,?,?,?)",
+                performance.getId(), performance.getSchool(), performance.getGrade(), performance.getCls(), performance.getSubject(), performance.getDate(), performance.getUpdated(), performance.getDue(),
+                performance.getTitle(), performance.getDesc());
         return performance;
     }
 
