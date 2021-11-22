@@ -18,7 +18,7 @@ public class MainController {
         this.performanceService = performanceService;
     }
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "")
     public String index(Model model, UserDataForm form){
         List<Performance> performances = performanceService.findMine(form.getSchool(),form.getGrade(),form.getCls());
         model.addAttribute("performances",performances);
@@ -33,7 +33,7 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "{id}")
     public String Specific(Model model, @PathVariable("id") String id){
         Performance performance = performanceService.findOne(id).orElseGet(Performance::new);
         model.addAttribute("id", performance.getId());
@@ -49,7 +49,7 @@ public class MainController {
         return "specific";
     }
 
-    @GetMapping(value = "/post_performance")
+    @GetMapping(value = "post_performance")
     public String getPerformance() {
         return "post_performance";
     }
@@ -68,7 +68,7 @@ public class MainController {
         performanceService.post(performance);
         return "/loading";
     }
-    @GetMapping(value = "/update/{id}")
+    @GetMapping(value = "update/{id}")
     public String updateGet(Model model, @PathVariable(value = "id") String id){
         Performance performance = performanceService.findOne(id).orElseGet(Performance::new);
         model.addAttribute("id", id);
@@ -78,13 +78,13 @@ public class MainController {
         return "modify";
     }
 
-    @PostMapping(value = "/update")
+    @PostMapping(value = "update")
     public String updatePost(ModifyForm modifyForm) {
         performanceService.update(modifyForm.getId(), modifyForm.getDue(), modifyForm.getTitle(), modifyForm.getDesc());
         return "/loading";
     }
 
-    @GetMapping(value = "/delete/{id}")
+    @GetMapping(value = "delete/{id}")
     public String delete(@PathVariable("id") String id){
         performanceService.deleteOne(id);
         return "/loading";
