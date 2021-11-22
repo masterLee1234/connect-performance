@@ -1,0 +1,30 @@
+@media only screen and (max-width: 768px) {
+    .left{
+        width: 100%;
+        min-height: 0;
+    }
+    .all{
+    }
+    body{
+        min-width: 0;
+        display: block; margin: 8px;
+    }
+    #calendar{
+      min-width: 100%;
+      min-height: 520px;
+      display: flex;
+      margin: 10px 10px 10px 10px;
+    }
+    .sep{
+        flex-direction: column-reverse;
+    }
+    .fc .fc-toolbar-title{
+        font-size: 20px;
+    }
+    .logo{
+        font-size: 2rem;
+    }
+    .fc-header-toolbar{
+        flex-direction: column;
+    }
+}
